@@ -35,23 +35,31 @@ export const taskRouter = router({
         createdAt: new Date().toISOString(), // gera data atual
       };
       tasks.push(newTask);
+      console.log("Criando tarefa:", input);
       return newTask;
     }),
 
-  atualizarTask: publicProcedure
-    .input(taskSchema.extend({ id: z.string() }))
+    atualizarTask: publicProcedure
+    .input(
+      z.object({
+        id: z.string(),
+        title: z.string().min(1),
+        description: z.string().min(1),
+      })
+    )
     .mutation(({ input }) => {
       const index = tasks.findIndex((t) => t.id === input.id);
       if (index === -1) throw new Error("Tarefa não encontrada");
       tasks[index] = { ...tasks[index], ...input };
+      console.log("Atualizando tarefa:", input);
       return tasks[index];
-    }),
+    }),  
 
   deletarTask: publicProcedure.input(idSchema).mutation(({ input }) => {
     const index = tasks.findIndex((t) => t.id === input.id);
     if (index === -1) throw new Error("Tarefa não encontrada");
     const removida = tasks.splice(index, 1)[0];
-    console.log("Task removida");
+    console.log("Removendo tarefa com id:", input.id);
     return removida;
   }),
 });
