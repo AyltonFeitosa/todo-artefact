@@ -1,40 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# 📝 Sistema de Gerenciamento de Tarefas - Next.js + tRPC
 
-## Getting Started
+Este projeto é um sistema simples de gerenciamento de tarefas, desenvolvido como parte de um desafio técnico. Ele utiliza **Next.js 15**, **tRPC**, **React Query**, **Tailwind CSS** e **TypeScript**. As tarefas são armazenadas em memória (não persistem após reiniciar).
 
-First, run the development server:
+## ⚙️ Tecnologias Utilizadas
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+* Next.js 15
+* TypeScript
+* tRPC
+* React Query (TanStack)
+* Zod (validação)
+* Tailwind CSS
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✅ Funcionalidades
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+* Listar tarefas
+* Criar tarefas
+* Editar tarefas
+* Deletar tarefas
+* Validação de campos
+* Server-Side Rendering (SSR) na listagem
+* Feedback visual em estados de carregamento ou erro
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## 🧠 Organização de Pastas
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+src/
+├── pages/ → Rotas do Next.js
+│   ├── index.tsx → Listagem de tarefas (com SSR)
+│   └── task/
+│       ├── new\.tsx → Criação de nova tarefa
+│       └── \[id].tsx → Edição de tarefa
+├── server/
+│   └── api/
+│       ├── trpc.ts → Configuração do tRPC
+│       ├── root.ts → AppRouter geral
+│       └── routers/
+│           └── task.ts → Lógica CRUD em memória
+├── types/ → Tipagens globais
+├── utils/ → Conexão com tRPC frontend
+├── styles/ → Tailwind + estilos globais
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ▶️ Como Rodar o Projeto Localmente
 
-## Learn More
+1. Clone o repositório:
+   `git clone https://github.com/seu-usuario/seu-repositorio.git`
+   `cd seu-repositorio`
 
-To learn more about Next.js, take a look at the following resources:
+2. Instale as dependências:
+   `npm install`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+3. Inicie o servidor de desenvolvimento:
+   `npm run dev`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4. Acesse no navegador:
+   `http://localhost:3000`
 
-## Deploy on Vercel
+## ⚠️ Observações
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* Os dados não são persistidos: tudo fica em memória RAM enquanto o app está rodando.
+* Não há banco de dados ou autenticação.
+* Projeto fictício para fins didáticos e de avaliação.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+## 📌 Requisito do Desafio Atendido
+
+> “Utilize Server-Side Rendering (SSR) para pré-carregar a lista de tarefas”
+
+✔️ A página principal (`index.tsx`) usa `getServerSideProps()` + `initialData` com React Query.
+
+## 🤝 Contribuição
+
+Projeto desenvolvido com fins educacionais e para avaliação técnica.
+Fique à vontade para adaptar ou utilizar como base.
+
+---
+
